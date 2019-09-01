@@ -126,10 +126,12 @@ public class A1Adept {
         
 		String average = avg(total_output);
 
-
+        // output
+		// final
 		System.out.println("Biggest:" + " " + fname_big + " " + lname_big + " " + "(" + biggie + ")");
-		System.out.println("smallest:" + " " + fname_small + " " + lname_small + " " + "(" + small + ")");
+		System.out.println("Smallest:" + " " + fname_small + " " + lname_small + " " + "(" + small + ")");
 		System.out.println("Average:" + " " + average);
+		
 
 		scan.close();
 	}
