@@ -129,7 +129,7 @@ public class A1Adept {
 
 		System.out.println("Biggest:" + " " + fname_big + " " + lname_big + " " + "(" + biggie + ")");
 		System.out.println("smallest:" + " " + fname_small + " " + lname_small + " " + "(" + small + ")");
-		System.out.print("Average:" + " " + average);
+		System.out.println("Average:" + " " + average);
 
 		scan.close();
 	}
