@@ -7,7 +7,8 @@ public class A1Adept {
 	public static void main(String[] args) {
 
 		Scanner scan = new Scanner(System.in);
-
+        // read all the input
+		
 		int count = scan.nextInt();
 		Item[] item = new Item[count];
 
@@ -15,7 +16,6 @@ public class A1Adept {
 		int product_no = 0;
 		double[] total_output = null;
 		double sum_eachcus = 0;
-		// double sum = 0;
 		Customer[] cus = null;
 
 		for (int i = 0; i < count; i++) {
@@ -39,34 +39,38 @@ public class A1Adept {
 
 					cus[j].setFirstName(firstName);
 					cus[j].setLastName(lastName);
-					
+
 					cus[j].setShopping_list(product_no);
 
-					
-					Cus_Item[] bought = new Cus_Item[product_no];
-					
-				 
-					
+
+					CusItem[] bought = new CusItem[product_no];
+
+
+
 					cus[j].setBought(bought);
 					for (int p = 0; p < product_no; p++) {
-						bought[p] = new Cus_Item();
+						bought[p] = new CusItem();
 
 						int bou_no = scan.nextInt();
 						String bou_name = scan.next();
 
 						bought[p].setQuantity(bou_no);
 						bought[p].setBou_name(bou_name);
-						
+
 					}
 
 				}
 			}
 		}
+		
+		// read all the input from loops
+		// after match item names, total purchase list of each customer will be "output"
+		// total_output: total money spent by each customer
 		for (int a = 0; a < cus.length; a++) {
 			double[] product_output = new double[cus[a].getShopping_list()];
 			for (int b = 0; b < cus[a].getShopping_list(); b++) {
-			    for (int c = 0; c < item.length; c++) {
-				
+				for (int c = 0; c < item.length; c++) {
+
 
 					if (cus[a].getBought()[b].getBou_name().equals(item[c].getItem_name())) {
 						// get price and quantity; multiple them and add them together
@@ -75,20 +79,19 @@ public class A1Adept {
 						double pp = item[c].getItem_price();
 
 						output = pp * q;
-                         
-						
+
+
 					}
-					
+
 
 				}
-			    product_output[b] = output;
-				System.out.println(Arrays.toString(product_output));
+				product_output[b] = output;
 			}
 
 			sum_eachcus = sum(product_output);
 			total_output[a] = sum_eachcus;
 		}
-
+        // find the biggest
 		double biggest = total_output[0];
 		int f = 0;
 		String fname_big;
@@ -104,7 +107,8 @@ public class A1Adept {
 		fname_big = cus[f].getFirstName();
 		lname_big = cus[f].getLastName();
 		String biggie = String.format("%.2f", biggest);
-
+        
+		// find the smallest
 		double smallest = total_output[0];
 		int ff = 0;
 		String fname_small;
@@ -119,17 +123,17 @@ public class A1Adept {
 		fname_small = cus[ff].getFirstName();
 		lname_small = cus[ff].getLastName();
 		String small = String.format("%.2f", smallest);
-
+        
 		String average = avg(total_output);
 
-		// a method to organize final output
+
 		System.out.println("Biggest:" + " " + fname_big + " " + lname_big + " " + "(" + biggie + ")");
 		System.out.println("smallest:" + " " + fname_small + " " + lname_small + " " + "(" + small + ")");
 		System.out.println("Average:" + " " + average);
 
 		scan.close();
 	}
-
+    
 	public static double sum(double[] x) {
 		double sum = 0;
 		for (int i = 0; i < x.length; i++) {
@@ -150,10 +154,11 @@ public class A1Adept {
 
 }
 
+// store names, shopping list, and the number of different items each customer bought
 class Customer {
 	private String firstName;
 	private String lastName;
-	private Cus_Item[] bought;
+	private CusItem[] bought;
 	private int shopping_list;
 
 	public String getFirstName() {
@@ -172,11 +177,11 @@ class Customer {
 		this.lastName = lastName;
 	}
 
-	public Cus_Item[] getBought() {
+	public CusItem[] getBought() {
 		return bought;
 	}
 
-	public void setBought(Cus_Item[] bought) {
+	public void setBought(CusItem[] bought) {
 		this.bought = bought;
 	}
 
@@ -187,10 +192,10 @@ class Customer {
 	public void setShopping_list(int shopping_list) {
 		this.shopping_list = shopping_list;
 	}
-	
+
 
 }
-
+// store prices, and names of all items
 class Item {
 	private String item_name;
 	private double item_price;
@@ -212,11 +217,11 @@ class Item {
 	}
 
 }
-
-class Cus_Item {
+// number and names of items EACH customer bought
+class CusItem {
 	private int quantity;
 	private String bou_name;
-	
+
 
 	public int getQuantity() {
 		return quantity;
@@ -235,6 +240,6 @@ class Cus_Item {
 	}
 
 
-	
+
 
 }

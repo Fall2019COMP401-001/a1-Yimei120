@@ -9,7 +9,7 @@ public class A1Novice {
 		Scanner scan = new Scanner(System.in);
 
 		// Your code follows here.
-
+        // read all values from inputs
 		if (scan.hasNextInt()) {
 			int count = scan.nextInt();
 
@@ -27,12 +27,12 @@ public class A1Novice {
 					scan.next(); // get rid of product name
 					double price = scan.nextDouble();
 
-					total = ProductTotal(num, price);
+					total = productTotal(num, price);
 
 					product[j] = total;
 
 				}
-
+                // Total purchase for each customer.
 				double sum = 0;
 				for (double t : product) {
 					sum += t;
@@ -52,8 +52,10 @@ public class A1Novice {
 		}
 		scan.close();
 	}
-
-	public static double ProductTotal(int x, double y) {
+    // calculate the product of each item.
+	// inputs: number of the item and price of it.
+	// error condition: number of the item should be integer and price should be double.
+	public static double productTotal(int x, double y) {
 		return x * y;
 	}
 }

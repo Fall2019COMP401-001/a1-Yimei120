@@ -7,8 +7,8 @@ public class A1Jedi {
 	public static void main(String[] args) {
 
 		Scanner scan = new Scanner(System.in);
-
-		// Your code follows here.
+		
+		 // read all the input
 		int count = scan.nextInt();
 		ItemJ[] item = new ItemJ[count];
 
@@ -37,7 +37,7 @@ public class A1Jedi {
 
 					Cus_ItemJ[] bought = new Cus_ItemJ[product_no];
 
-					
+
 					cus[j].setBought(bought);
 					for (int p = 0; p < product_no; p++) {
 						bought[p] = new Cus_ItemJ();
@@ -54,8 +54,10 @@ public class A1Jedi {
 			}
 		}
 
-		
-		
+		// read all the input from loops
+		// after matching names, record the quantity of EACH item
+		// flag: used to record number of customers
+
 		int[] product_output = new int[item.length];
 		int[] cus_order = new int[item.length];
 		for (int c = 0; c < item.length; c++) {
@@ -64,7 +66,7 @@ public class A1Jedi {
 			for (int a = 0; a < cus.length; a++) {
 				int flag = 0;
 				for (int b = 0; b < cus[a].getShopping_list(); b++) {
-                    
+
 					if (cus[a].getBought()[b].getBou_name().equals(item[c].getItem_name())) {
 						// get price and quantity; multiple them and add them together
 
@@ -95,9 +97,9 @@ public class A1Jedi {
 			}
 			System.out.println(cus_order[s] + " customers bought " + product_output[s] + " " + item[s].getItem_name());
 		}
-		scan.close();;
+		scan.close();
 	}
-	
+
 	public static int sum(int[] x) {
 		int sum = 0;
 		for (int i = 0; i < x.length; i++) {
@@ -108,6 +110,7 @@ public class A1Jedi {
 
 }
 
+//store names, shopping list, and the number of different items each customer bought
 class CustomerJ {
 
 	private Cus_ItemJ[] bought;
@@ -131,6 +134,7 @@ class CustomerJ {
 
 }
 
+//store prices, and names of all items
 class ItemJ {
 	private String item_name;
 	private double item_price;
@@ -153,6 +157,7 @@ class ItemJ {
 
 }
 
+//number and names of items EACH customer bought
 class Cus_ItemJ {
 	private int quantity;
 	private String bou_name;
