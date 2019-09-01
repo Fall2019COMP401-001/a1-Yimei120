@@ -39,17 +39,21 @@ public class A1Jedi {
 
 
 					cus[j].setBought(bought);
+					// String[] names = new String[product_no];
 					for (int p = 0; p < product_no; p++) {
 						bought[p] = new Cus_ItemJ();
 
 						int bou_no = scan.nextInt();
 						String bou_name = scan.next();
+						
+						/*for (int n=0; n<names.length; n++ ) {
+							names[n] = bou_name;
+						}*/
 
 						bought[p].setQuantity(bou_no);
 						bought[p].setBou_name(bou_name);
 
 					}
-
 				}
 			}
 		}
@@ -60,28 +64,41 @@ public class A1Jedi {
 
 		int[] product_output = new int[item.length];
 		int[] cus_order = new int[item.length];
+		
 		for (int c = 0; c < item.length; c++) {
 			int sum = 0;
 			int order = 0;
 			for (int a = 0; a < cus.length; a++) {
-				int flag = 0;
+					int flag = 0;
 				for (int b = 0; b < cus[a].getShopping_list(); b++) {
-
+					
 					if (cus[a].getBought()[b].getBou_name().equals(item[c].getItem_name())) {
 						// get price and quantity; multiple them and add them together
-
-						int q = cus[a].getBought()[b].getQuantity();
-						sum += q;
-						flag += 1;
+						   int q = cus[a].getBought()[b].getQuantity();
+							sum += q;
+							
+						   if (b==0) {
+							   flag = 1;
+						   }else {
+							for (int m=0; m<b; m++) {
+								if (cus[a].getBought()[b].getBou_name().equals(cus[a].getBought()[m].getBou_name())) {
+									flag = 0;
+									break;
+								} 
+								flag = 1;
+							}
+						   }
+						
 					}else {
 						flag = 0;
 					}
+						
 					if (flag == 1) {
 						order += 1;
 					}
-
+					
 				}
-
+				
 			}
 			product_output[c] = sum;
 			cus_order[c] = order;
@@ -90,7 +107,7 @@ public class A1Jedi {
 			}
 		}
 
-		// a method to organize final output
+		
 		for (int s = 0; s < item.length; s++) {
 			if (product_output[s] == 0) {
 				continue;
@@ -107,6 +124,7 @@ public class A1Jedi {
 		}
 		return sum;
 	}
+ 
 
 }
 
@@ -179,3 +197,4 @@ class Cus_ItemJ {
 	}
 
 }
+
